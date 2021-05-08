@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_no: MyString
+  course_name: MyString
+  the_date: 2021-05-04
+  start_time: MyString
+  end_time: MyString
+  capacity: 1
+  inp_date: 2021-05-04
+  upd_date: 2021-05-04 22:16:42
+
+two:
+  course_no: MyString
+  course_name: MyString
+  the_date: 2021-05-04
+  start_time: MyString
+  end_time: MyString
+  capacity: 1
+  inp_date: 2021-05-04
+  upd_date: 2021-05-04 22:16:42
