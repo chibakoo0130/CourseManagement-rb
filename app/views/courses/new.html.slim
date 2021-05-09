@@ -3,21 +3,49 @@ p Find me in app/views/courses/new.html.slim
 
 div.txt-center
     = form_with model: @course, local: true, url: courses_confirm_path do |f|
-        table
+        table.tbl-center
             tr
                 td 
-                    = f.label :courseNo
+                    = f.label :course_no
                     span ※
                 td
-                    = f.text_field :courseNo, id: 'course_no'
+                    = f.text_field :course_no, id: 'course_no'
             tr
                 td
-                    = f.label :courseName
+                    = f.label :course_name
                 td
-                    = f.text_field :courseName, id: 'course_name'
+                    = f.text_field :course_name, id: 'course_name'
             tr
                 td
-                    | 講座開催日
+                    = f.label :the_date
                 td
+                    = f.select :year, options_for_select((@year..@year+5).map{|n| ["#{n}", n]}), id: 'the_date'
+                    | 年
+                    = f.select :month, options_for_select((1..12).map{|n| ["#{n}", n]}), id: 'the_date' 
+                    | 月
+                    = f.select :date, options_for_select((1..31).map{|n| ["#{n}", n]}), id: 'the_date'
+                    | 日
+            tr
+                td
+                    = f.label :start_time
+                td
+                    = f.select :start_hour, options_for_select((10..18).map{|n| ["#{n}", n]}), id: 'start_time'
+                    | 時
+                    = f.select :start_minute, {"00":"00", "30":"30"}, id: 'start_time'
+                    | 分
+            tr
+                td
+                    = f.label :end_time
+                td
+                    = f.select :end_hour, options_for_select((10..18).map{|n| ["#{n}", n]}), id: 'end_time'
+                    | 時
+                    = f.select :end_minute, {"00":"00", "30":"30"}, id: 'end_time'
+                    | 分
+            tr
+                td
+                    = f.label :capacity
+                td
+                    = f.number_field :capacity, id: 'capacity'
+                    | 人
         = f.submit '戻る', name: 'back'
-        = f.submit '登録'
+        = f.submit '確認'

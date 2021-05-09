@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'courses/new'
   post 'courses/new'
   post 'courses/confirm'
-  post 'course/create'
+  post 'courses/create'
   get 'courses/edit'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
