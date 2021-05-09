@@ -1,0 +1,46 @@
+h1 Courses#confirm
+p Find me in app/views/courses/confirm.html.slim
+
+= form_with model: @course_create_form, local: true, url: courses_create_path do |f|
+    div.txt-center
+        table.tbl-center
+            tr
+                td= f.label :course_no
+                td= @course_create_form.course_no
+                = f.hidden_field :course_no
+            tr
+                td= f.label :course_name
+                td= @course_create_form.course_name
+                = f.hidden_field :course_name
+            tr
+                td= f.label :the_date
+                td
+                    = @course_create_form.year
+                    | 年
+                    = @course_create_form.month
+                    | 月
+                    = @course_create_form.date
+                    | 日
+                = f.hidden_field :the_date
+            tr
+                td= f.label :start_time
+                td
+                    = @course_create_form.start_hour
+                    | 時
+                    = @course_create_form.start_minute
+                    | 分
+                = f.hidden_field :start_time
+            tr
+                td= f.label :end_time
+                td
+                    = @course_create_form.end_hour
+                    | 時
+                    = @course_create_form.end_minute
+                    | 分
+                = f.hidden_field :end_time
+            tr
+                td= f.label :capacity
+                td= @course_create_form.capacity
+                = f.hidden_field :capacity
+        = f.submit '戻る', name: 'back'
+        = f.submit '登録'

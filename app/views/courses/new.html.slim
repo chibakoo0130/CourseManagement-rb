@@ -2,7 +2,7 @@ h1 Courses#new
 p Find me in app/views/courses/new.html.slim
 
 div.txt-center
-    = form_with model: @course, local: true, url: courses_confirm_path do |f|
+    = form_with model: @course_create_form, local: true, url: courses_confirm_path do |f|
         table.tbl-center
             tr
                 td 

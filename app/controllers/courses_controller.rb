@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   end
 
   def new
-    @course = Course.new
+    @course_create_form = CourseCreateForm.new
     @year = Date.today.year
   end
 
@@ -19,12 +19,12 @@ class CoursesController < ApplicationController
       return
     end
 
-    @course = Course.new(course_params)
+    @course_create_form = CourseCreateForm.new(course_create_form_params)
     render :confirm
   end
 
   def create
-    @course = Course.new(course_params)
+    @course_create_form = CourseCreateForm.new(course_create_form_params)
     if params[:back].present?
       @year = Date.today.year
       render :new
@@ -37,15 +37,13 @@ class CoursesController < ApplicationController
 
   private
 
-  def course_params
-    getTheDate
-    getStartTime
-    getEndTime
-    params.require(:course).permit(:course_no, :course_name, :the_date, :start_time, :end_time, :capacity)
+  def course_create_form_params
+    params.require(:course_create_form).permit(:course_no, :course_name, :year, :month, :date, 
+      :start_hour, :start_minute, :end_hour, :end_minute, :capacity)
   end
 
   def getTheDate
-    params.require(:course).permit(:year, :month, :date)
+    params.require(:course_create_form).permit(:year, :month, :date)
     params[:course][:the_date] = params[:course][:year] + "-" + params[:course][:month] + "-" + params[:course][:date]
   end
 
