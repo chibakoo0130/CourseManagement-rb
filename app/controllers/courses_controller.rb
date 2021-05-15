@@ -17,10 +17,11 @@ class CoursesController < ApplicationController
     if params[:back].present?
       render :menu
       return
+    else 
+      @course_create_form = CourseCreateForm.new(course_create_form_params)
+      @year = Date.today.year
+      render :new unless @course_create_form.valid?
     end
-
-    @course_create_form = CourseCreateForm.new(course_create_form_params)
-    render :confirm
   end
 
   def create

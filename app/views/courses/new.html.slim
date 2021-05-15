@@ -1,6 +1,11 @@
 h1 Courses#new
 p Find me in app/views/courses/new.html.slim
 
+- if @course_create_form.errors.present?
+    ul
+        - @course_create_form.errors.full_messages.each do |message|
+            li= message
+
 div.txt-center
     = form_with model: @course_create_form, local: true, url: courses_confirm_path do |f|
         table.tbl-center
@@ -19,17 +24,17 @@ div.txt-center
                 td
                     = f.label :the_date
                 td
-                    = f.select :year, options_for_select((@year..@year+5).map{|n| ["#{n}", n]}), id: 'the_date'
+                    = f.select :year, (@year..@year+5).map{|n| ["#{n}", n]}, id: 'the_date'
                     | 年
-                    = f.select :month, options_for_select((1..12).map{|n| ["#{n}", n]}), id: 'the_date' 
+                    = f.select :month, (1..12).map{|n| ["#{n}", n]}, id: 'the_date' 
                     | 月
-                    = f.select :date, options_for_select((1..31).map{|n| ["#{n}", n]}), id: 'the_date'
+                    = f.select :date, (1..31).map{|n| ["#{n}", n]}, id: 'the_date'
                     | 日
             tr
                 td
                     = f.label :start_time
                 td
-                    = f.select :start_hour, options_for_select((10..18).map{|n| ["#{n}", n]}), id: 'start_time'
+                    = f.select :start_hour, (10..18).map{|n| ["#{n}", n]}, id: 'start_time'
                     | 時
                     = f.select :start_minute, {"00":"00", "30":"30"}, id: 'start_time'
                     | 分
@@ -37,7 +42,7 @@ div.txt-center
                 td
                     = f.label :end_time
                 td
-                    = f.select :end_hour, options_for_select((10..18).map{|n| ["#{n}", n]}), id: 'end_time'
+                    = f.select :end_hour, (10..18).map{|n| ["#{n}", n]}, id: 'end_time'
                     | 時
                     = f.select :end_minute, {"00":"00", "30":"30"}, id: 'end_time'
                     | 分
@@ -45,7 +50,7 @@ div.txt-center
                 td
                     = f.label :capacity
                 td
-                    = f.number_field :capacity, id: 'capacity'
+                    = f.text_field :capacity, id: 'capacity'
                     | 人
         = f.submit '戻る', name: 'back'
         = f.submit '確認'
