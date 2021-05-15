@@ -19,6 +19,19 @@ ja:
         capacity: 定員
         inp_date: 登録日
         upd_date: 更新日時
+  activemodel:
+    models:
+      course_create_form: 講座
+    attributes:
+      course_create_form:
+        course_no: 講座番号
+        course_name: 講座名
+        the_date: 開催日
+        start_time: 開始時刻
+        end_time: 終了時刻
+        capacity: 定員
+        inp_date: 登録日
+        upd_date: 更新日時
   date:
     abbr_day_names:
     - 日
