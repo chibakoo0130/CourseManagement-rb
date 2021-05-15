@@ -1,14 +1,14 @@
-h1 Courses#new
-p Find me in app/views/courses/new.html.slim
+h1.txt-center.blue 講座登録
+p.txt-center ※ は入力必須です。
 
 - if @course_create_form.errors.present?
-    ul
+    ul.txt-center
         - @course_create_form.errors.full_messages.each do |message|
             li= message
 
 div.txt-center
     = form_with model: @course_create_form, local: true, url: courses_confirm_path do |f|
-        table.tbl-center
+        table align="center"
             tr
                 td 
                     = f.label :course_no
@@ -18,11 +18,13 @@ div.txt-center
             tr
                 td
                     = f.label :course_name
+                    span ※
                 td
                     = f.text_field :course_name, id: 'course_name'
             tr
                 td
                     = f.label :the_date
+                    span ※
                 td
                     = f.select :year, (@year..@year+5).map{|n| ["#{n}", n]}, id: 'the_date'
                     | 年
@@ -33,6 +35,7 @@ div.txt-center
             tr
                 td
                     = f.label :start_time
+                    span ※
                 td
                     = f.select :start_hour, (10..18).map{|n| ["#{n}", n]}, id: 'start_time'
                     | 時
@@ -41,6 +44,7 @@ div.txt-center
             tr
                 td
                     = f.label :end_time
+                    span ※
                 td
                     = f.select :end_hour, (10..18).map{|n| ["#{n}", n]}, id: 'end_time'
                     | 時
@@ -49,8 +53,9 @@ div.txt-center
             tr
                 td
                     = f.label :capacity
+                    span ※
                 td
                     = f.text_field :capacity, id: 'capacity'
                     | 人
-        = f.submit '戻る', name: 'back'
-        = f.submit '確認'
+        = f.submit '戻る', name: 'back', class: 'blue'
+        = f.submit '確認', class: 'blue'

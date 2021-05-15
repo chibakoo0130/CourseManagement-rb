@@ -1,5 +1,5 @@
-h1 Courses#confirm
-p Find me in app/views/courses/confirm.html.slim
+h1.txt-center.blue 登録確認
+p.txt-center 入力内容を確認してください。
 
 = form_with model: @course_create_form, local: true, url: courses_create_path do |f|
     div.txt-center
@@ -49,5 +49,5 @@ p Find me in app/views/courses/confirm.html.slim
                 td= @course_create_form.capacity
                 = f.hidden_field :capacity
                     | 人
-        = f.submit '戻る', name: 'back'
-        = f.submit '登録'
+        = f.submit '戻る', name: 'back', class: 'blue'
+        = f.submit '登録', class: 'blue'
