@@ -28,10 +28,25 @@ class CoursesController < ApplicationController
     if params[:back].present?
       @year = Date.today.year
       render :new
+    else
+      @course = Course.new
+      form_to_model(course_create_form_params, @course)
+      p @course
+      @course.save!
+      render :create
       return
     end
   end
 
+  def complete
+    if params[:menu].present?
+      render :menu
+    elsif params[:new]
+      @year = Date.today.year
+      render :new
+    end
+  end
+  
   def edit
   end
 
@@ -42,18 +57,15 @@ class CoursesController < ApplicationController
       :start_hour, :start_minute, :end_hour, :end_minute, :capacity)
   end
 
-  def getTheDate
-    params.require(:course_create_form).permit(:year, :month, :date)
-    params[:course][:the_date] = params[:course][:year] + "-" + params[:course][:month] + "-" + params[:course][:date]
-  end
-
-  def getStartTime
-    params.require(:course).permit(:start_hour, :start_minute)
-    params[:course][:start_time] = params[:course][:start_hour] + ":" + params[:course][:start_minute]
-  end
-
-  def getEndTime
-    params.require(:course).permit(:end_hour, :end_minute)
-    params[:course][:end_time] = params[:course][:end_hour] + ":" + params[:course][:end_minute]
+  def form_to_model(form, course)
+    course_create_form = CourseCreateForm.new(form)
+    course.course_no = course_create_form.course_no
+    course.course_name = course_create_form.course_name
+    course.the_date = course_create_form.year + "-" + course_create_form.month + "-" + course_create_form.date
+    course.start_time = course_create_form.start_hour + ":" + course_create_form.start_minute
+    course.end_time = course_create_form.end_hour + ":" + course_create_form.end_minute
+    course.capacity = course_create_form.capacity
+    course.inp_date = Date.today
+    course.upd_date = Time.now
   end
 end

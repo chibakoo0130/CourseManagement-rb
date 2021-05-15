@@ -16,26 +16,32 @@ p Find me in app/views/courses/confirm.html.slim
                 td= f.label :the_date
                 td
                     = @course_create_form.year
+                    = f.hidden_field :year
                     | 年
                     = @course_create_form.month
+                    = f.hidden_field :month
                     | 月
                     = @course_create_form.date
+                    = f.hidden_field :date
                     | 日
-                = f.hidden_field :the_date
             tr
                 td= f.label :start_time
                 td
                     = @course_create_form.start_hour
+                    = f.hidden_field :start_hour
                     | 時
                     = @course_create_form.start_minute
+                    = f.hidden_field :start_minute
                     | 分
                 = f.hidden_field :start_time
             tr
                 td= f.label :end_time
                 td
                     = @course_create_form.end_hour
+                    = f.hidden_field :end_hour
                     | 時
                     = @course_create_form.end_minute
+                    = f.hidden_field :end_minute
                     | 分
                 = f.hidden_field :end_time
             tr
